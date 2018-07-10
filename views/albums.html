@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Albums</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-4">My Albums And Photos</h1>
+        <div class ="row">
+            <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-4 " style=" border:1px solid; height: auto">
+                <ul class="js-photoLinks">
+                    {% for i in range(0, 8) %}
+                    <li><a href="#" data-photo-id="{{ user1[i].id }}" id="album-{{ user1[i].id }}">Album {{ user1[i].id }}</a></li>
+                    {% else %}
+                    <li>This would display if the 'item' collection were empty</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-8 img-container" style="border:1px solid; height: auto;">
+                <ul id="thumbnail"></ul>
+            </div></div>
+        <div class="row">
+             <div class="col-sm-12 big-image" style="border:1px solid;">
+
+             </div>
+         </div>
+    </div>
+
+        <script>
+
+            var photoLinks = document.querySelectorAll('.js-photoLinks li');
+
+            Array.from(photoLinks).forEach(function (el) {
+                var photoLink = el.querySelector('a');
+
+
+                photoLink.addEventListener("click", function (event) {
+                    document.getElementById('thumbnail').innerHTML = "";
+
+                    event.preventDefault();
+
+                    var photoId = photoLink.dataset.photoId;
+                    const url = 'https://jsonplaceholder.typicode.com/albums/' + photoId + '/photos';
+                    fetch(url)
+                        .then((resp) => resp.json())
+                        .then(function (data) {
+                            let i;
+                            for(i=0; i<8; i++){
+                                let elem = document.querySelector('#thumbnail');
+                                elem.innerHTML = elem.innerHTML + '<li data-big-image="'+data[i].url+'"><img class="js-photoLink img-fluid" src="'+data[i].thumbnailUrl+'" alt="'+data[i].title+'"></li>';
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                });
+                const link = 'js-photoLink';
+                document.addEventListener('click', function (event) {
+                    if(!event.target.classList.contains(link)) return;
+                    let elem = document.querySelector('.big-image');
+                    console.log(event);
+                    elem.innerHTML = "<img class='img-fluid' src='"+event.path[1].dataset.bigImage+"'>";
+
+                },false);
+            });
+
+
+        </script>
+    </body>
+</html>

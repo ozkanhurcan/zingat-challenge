@@ -1,0 +1,75 @@
+body{
+
+}
+/******************************************** LOGİN ********************************************/
+.container{
+    max-width: 1000px;
+}
+.form-control-lg{
+    padding: 0;
+    display: block;
+    margin:0px auto;
+    height: auto;
+}
+.row-login{
+    padding: 0;
+    display: block;
+    margin:0px auto;
+    height: auto;
+}
+.row-login .col-12{
+    margin-top:2%;
+}
+
+/******************************************** MY ALBUMS ********************************************/
+#thumbnail{
+    padding: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
+.img-container{
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    min-height: 350px;
+}
+#thumbnail li{
+    list-style-type: none;
+    float:left;
+    vertical-align: middle;
+    max-height: 100%;
+    max-width: 50%;
+    margin:1%;
+}
+.js-photoLinks{
+    padding: 0;
+    text-align:center;
+}
+.js-photoLinks li{
+    margin-top: 5%;
+    list-style-type: none;
+}
+.js-photoLinks li a{
+    color: black;
+}
+.js-photoLinks img{
+    position: relative;
+    max-width: 100%;
+}
+.js-photoLink{
+    display: block;
+    position: relative;
+}
+.big-image{
+    min-height: 350px;
+}
+.big-image img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
